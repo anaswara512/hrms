@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+
+{% block title %}
+Employee Profile
+{% endblock %}
+
+{% block page_title %}
+Employee Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+<div class="col-lg-4">
+
+<div class="card shadow text-center p-4">
+
+<img
+
+src="https://ui-avatars.com/api/?name={{ employee.employee_id }}&size=180"
+
+class="rounded-circle mx-auto"
+
+width="170">
+
+<h3 class="mt-3">
+
+{% if employee.user %}
+{{ employee.user.username }}
+{% else %}
+No User
+{% endif %}
+
+</h3>
+
+<span class="badge bg-primary">
+
+{{ employee.designation }}
+
+</span>
+
+<hr>
+
+<table class="table table-borderless">
+
+<tr>
+
+<th>Employee ID</th>
+
+<td>{{ employee.employee_id }}</td>
+
+</tr>
+
+<tr>
+
+<th>Department</th>
+
+<td>{{ employee.department }}</td>
+
+</tr>
+
+<tr>
+
+<th>Phone</th>
+
+<td>{{ employee.phone }}</td>
+
+</tr>
+
+<tr>
+
+<th>Joining</th>
+
+<td>{{ employee.joining_date }}</td>
+
+</tr>
+
+<tr>
+
+<th>Salary</th>
+
+<td>
+
+₹ {{ employee.salary }}
+
+</td>
+
+</tr>
+
+</table>
+
+<a
+
+href="{% url 'employee_update' employee.id %}"
+
+class="btn btn-warning">
+
+Edit Profile
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-8">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card shadow p-4">
+
+<h6>Total Attendance</h6>
+
+<h2>
+
+{{ attendance_count }}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card shadow p-4">
+
+<h6>Leave Taken</h6>
+
+<h2>
+
+{{ leave_count }}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card shadow p-4">
+
+<h6>Net Salary</h6>
+
+<h2>
+
+{% if payroll %}
+
+₹ {{ payroll.net_salary }}
+
+{% else %}
+
+--
+
+{% endif %}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+Recent Attendance
+
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<tr>
+
+<th>Date</th>
+
+<th>Check In</th>
+
+<th>Check Out</th>
+
+</tr>
+
+{% for a in attendance %}
+
+<tr>
+
+<td>{{ a.date }}</td>
+
+<td>{{ a.check_in }}</td>
+
+<td>{{ a.check_out }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="3">
+
+No Attendance
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header bg-success text-white">
+
+Leave History
+
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<tr>
+
+<th>From</th>
+
+<th>To</th>
+
+<th>Status</th>
+
+</tr>
+
+{% for leave in leaves %}
+
+<tr>
+
+<td>{{ leave.start_date }}</td>
+
+<td>{{ leave.end_date }}</td>
+
+<td>
+
+{% if leave.status == "Approved" %}
+
+<span class="badge bg-success">
+
+Approved
+
+</span>
+
+{% elif leave.status == "Rejected" %}
+
+<span class="badge bg-danger">
+
+Rejected
+
+</span>
+
+{% else %}
+
+<span class="badge bg-warning">
+
+Pending
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="3">
+
+No Leave Records
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<br>
+
+{% if payroll %}
+
+<a
+
+href="{% url 'generate_payslip' payroll.id %}"
+
+class="btn btn-primary">
+
+<i class="fa fa-download"></i>
+
+Download Payslip
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

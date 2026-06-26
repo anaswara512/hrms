@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply Leave{% endblock %}
+
+{% block page_title %}Apply Leave{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+<div class="card-header">
+
+<h4>Apply Leave</h4>
+
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button class="btn btn-primary">
+
+Submit Request
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

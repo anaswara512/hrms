@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+HR Dashboard
+{% endblock %}
+
+{% block page_title %}
+HR Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2>Welcome Back, {{ request.user.username }}</h2>
+    <p class="text-muted">Here is a quick overview of your HR management system metrics today.</p>
+</div>
+
+<div class="row g-4">
+    <!-- Total Employees Card -->
+    <div class="col-md-4">
+        <div class="card card-metric p-4 bg-gradient-blue text-white h-100 shadow-sm border-0 position-relative overflow-hidden">
+            <div class="position-absolute end-0 bottom-0 opacity-10 me-3 mb-3">
+                <i class="fa fa-users fa-5x"></i>
+            </div>
+            <h5 class="text-uppercase text-white-50">Total Employees</h5>
+            <h2 class="display-5 fw-bold mb-3">{{ employees }}</h2>
+            <a href="/employees/" class="text-white text-decoration-none small stretched-link">
+                View employee list <i class="fa fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Attendance Card -->
+    <div class="col-md-4">
+        <div class="card card-metric p-4 bg-gradient-indigo text-white h-100 shadow-sm border-0 position-relative overflow-hidden">
+            <div class="position-absolute end-0 bottom-0 opacity-10 me-3 mb-3">
+                <i class="fa fa-calendar-check fa-5x"></i>
+            </div>
+            <h5 class="text-uppercase text-white-50">Today's Attendance</h5>
+            <h2 class="display-5 fw-bold mb-3">{{ attendance }}</h2>
+            <a href="{% url 'attendance_dashboard' %}" class="text-white text-decoration-none small stretched-link">
+                Manage attendance <i class="fa fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Pending Leaves Card -->
+    <div class="col-md-4">
+        <div class="card card-metric p-4 bg-gradient-purple text-white h-100 shadow-sm border-0 position-relative overflow-hidden">
+            <div class="position-absolute end-0 bottom-0 opacity-10 me-3 mb-3">
+                <i class="fa fa-calendar-days fa-5x"></i>
+            </div>
+            <h5 class="text-uppercase text-white-50">Pending Leaves</h5>
+            <h2 class="display-5 fw-bold mb-3">{{ pending_leaves }}</h2>
+            <a href="/leaves/" class="text-white text-decoration-none small stretched-link">
+                Review leave requests <i class="fa fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card shadow border-0 p-4">
+            <h4 class="mb-3">Quick Utilities</h4>
+            <div class="d-flex gap-3 flex-wrap">
+                <a href="/employees/create/" class="btn btn-primary px-4 py-2">
+                    <i class="fa fa-user-plus me-2"></i> Add New Employee
+                </a>
+                <a href="/payroll/generate/" class="btn btn-success px-4 py-2">
+                    <i class="fa fa-file-invoice-dollar me-2"></i> Run Payroll Run
+                </a>
+                <a href="/reports/" class="btn btn-dark px-4 py-2">
+                    <i class="fa fa-chart-pie me-2"></i> View System Reports
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

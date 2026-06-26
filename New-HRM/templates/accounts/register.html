@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Onboard New User / Employee{% endblock %}
+{% block page_title %}Onboard New User / Employee{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-white border-bottom py-3">
+                <h4 class="mb-0 text-primary">
+                    <i class="fa fa-user-plus me-2"></i>
+                    Onboard New User / Employee
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                {% if error %}
+                    <div class="alert alert-danger shadow-sm">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Full Name</label>
+                            <input type="text" name="full_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Phone</label>
+                            <input type="text" name="phone" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Department</label>
+                            <select name="department" class="form-select">
+                                <option>Human Resource</option>
+                                <option>IT</option>
+                                <option>Finance</option>
+                                <option>Sales</option>
+                                <option>Marketing</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Role</label>
+                            <select name="role" class="form-select">
+                                <option value="EMPLOYEE">Employee</option>
+                                <option value="HR">HR Manager</option>
+                                <option value="ADMIN">System Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top d-flex gap-3">
+                        <button type="submit" class="btn btn-success px-4 py-2">
+                            <i class="fa fa-save me-1"></i> Onboard User
+                        </button>
+                        <a href="{% url 'employee_list' %}" class="btn btn-secondary px-4 py-2">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

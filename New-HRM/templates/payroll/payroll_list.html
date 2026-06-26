@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Payroll
+
+{% endblock %}
+
+{% block page_title %}
+
+Payroll Management
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+<div class="card-header d-flex justify-content-between">
+
+<h3>
+
+Payroll
+
+</h3>
+
+<a
+
+href="{% url 'generate_all_payroll' %}"
+
+class="btn btn-success">
+
+Generate Payroll
+
+</a>
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Employee</th>
+
+<th>Basic</th>
+
+<th>Bonus</th>
+
+<th>Tax</th>
+
+<th>Deduction</th>
+
+<th>Net Salary</th>
+
+<th>Payslip</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for payroll in payrolls %}
+
+<tr>
+
+<td>
+
+{{ payroll.employee.employee_id }}
+
+</td>
+
+<td>
+
+₹ {{ payroll.basic_salary }}
+
+</td>
+
+<td>
+
+₹ {{ payroll.bonus }}
+
+</td>
+
+<td>
+
+₹ {{ payroll.tax }}
+
+</td>
+
+<td>
+
+₹ {{ payroll.deduction }}
+
+</td>
+
+<td>
+
+<b>
+
+₹ {{ payroll.net_salary }}
+
+</b>
+
+</td>
+
+<td>
+
+<a
+
+href="{% url 'generate_payslip' payroll.id %}"
+
+class="btn btn-primary btn-sm">
+
+PDF
+
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="7">
+
+No Payroll Generated
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+<div class="container-fluid">
+
+<h4>
+
+{% block page_title %}
+
+Dashboard
+
+{% endblock %}
+
+</h4>
+
+<div class="d-flex align-items-center">
+
+<i class="fa fa-bell me-4 fs-5"></i>
+
+<div class="dropdown">
+
+<a
+class="dropdown-toggle text-dark text-decoration-none"
+data-bs-toggle="dropdown">
+
+<i class="fa fa-user-circle fs-4"></i>
+
+{{ request.user.username }}
+
+</a>
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+{% if request.user.employee %}
+<li>
+
+<a class="dropdown-item"
+    href="{% url 'employee_profile' request.user.employee.id %}">
+
+Profile
+
+</a>
+
+</li>
+{% endif %}
+
+<li>
+
+<a class="dropdown-item"
+href="/logout/">
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>

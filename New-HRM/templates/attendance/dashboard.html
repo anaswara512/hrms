@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Attendance
+
+{% endblock %}
+
+{% block page_title %}
+
+Attendance Dashboard
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-4 bg-success text-white">
+
+<h5>
+
+Present
+
+</h5>
+
+<h1>
+
+{{ present }}
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 bg-warning">
+
+<h5>
+
+Late
+
+</h5>
+
+<h1>
+
+{{ late }}
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 bg-danger text-white">
+
+<h5>
+
+Absent
+
+</h5>
+
+<h1>
+
+{{ absent }}
+
+</h1>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header">
+
+Today's Attendance
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Employee</th>
+
+<th>Date</th>
+
+<th>Check In</th>
+
+<th>Check Out</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for a in attendance %}
+
+<tr>
+
+<td>
+
+{{ a.employee.employee_id }}
+
+</td>
+
+<td>
+
+{{ a.date }}
+
+</td>
+
+<td>
+
+{{ a.check_in }}
+
+</td>
+
+<td>
+
+{{ a.check_out }}
+
+</td>
+
+<td>
+
+{% if a.status == "Present" %}
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+{% elif a.status == "Late" %}
+
+<span class="badge bg-warning">
+
+Late
+
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+Absent
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="5">
+
+No Attendance Found
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

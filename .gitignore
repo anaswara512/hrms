@@ -1,0 +1,11 @@
+New-HRM/venv/
+New-HRM/myenv/
+New-HRM/*.pyc
+New-HRM/__pycache__/
+New-HRM/.env
+New-HRM/.idea/
+New-HRM/.vscode/
+New-HRM/staticfiles/
+New-HRM/db.sqlite3-journal
+.vercel/
+.env.local

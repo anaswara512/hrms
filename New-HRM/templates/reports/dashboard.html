@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock %}
+{% block page_title %}Reports Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card shadow p-4">
+            <h5>Total Employees</h5>
+            <h2>{{ employees }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow p-4">
+            <h5>Attendance</h5>
+            <h2>{{ attendance }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow p-4">
+            <h5>Leave Requests</h5>
+            <h2>{{ leaves }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow p-4">
+            <h5>Payroll Records</h5>
+            <h2>{{ payroll }}</h2>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+<div class="sidebar">
+
+<div class="logo">
+
+<h3>HRMS</h3>
+
+</div>
+
+<ul>
+
+<li>
+    {% if request.user.role == 'ADMIN' %}
+        <a href="/dashboard/admin/">
+            <i class="fa fa-gauge"></i> Dashboard
+        </a>
+    {% elif request.user.role == 'HR' %}
+        <a href="/dashboard/">
+            <i class="fa fa-gauge"></i> Dashboard
+        </a>
+    {% else %}
+        <a href="/dashboard/employee/">
+            <i class="fa fa-gauge"></i> Dashboard
+        </a>
+    {% endif %}
+</li>
+
+{% if request.user.role == 'ADMIN' or request.user.role == 'HR' %}
+<li>
+
+<a href="/employees/">
+
+<i class="fa fa-users"></i>
+
+Employees
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'attendance_dashboard' %}">
+
+<i class="fa fa-calendar-check"></i>
+
+Attendance
+
+</a>
+
+</li>
+{% endif %}
+
+<li>
+
+<a href="/leaves/">
+
+<i class="fa fa-calendar-days"></i>
+
+Leaves
+
+</a>
+
+</li>
+
+{% if request.user.role == 'ADMIN' or request.user.role == 'HR' %}
+<li>
+
+<a href="/payroll/">
+
+<i class="fa fa-money-check-dollar"></i>
+
+Payroll
+
+</a>
+
+</li>
+
+<li>
+
+<a href="/reports/">
+
+<i class="fa fa-chart-line"></i>
+
+Reports
+
+</a>
+
+</li>
+{% endif %}
+
+<li>
+
+<a href="/logout/">
+
+<i class="fa fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
