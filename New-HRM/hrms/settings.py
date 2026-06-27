@@ -149,6 +149,10 @@ AUTH_USER_MODEL = 'accounts.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Use client-side cookie sessions to avoid database write errors in read-only Vercel environment
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
